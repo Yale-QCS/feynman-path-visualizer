@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Feynman-Path Generator</title>
+
+    <!-- Konva Library for Canvas Graphics -->
+    <script type="text/javascript" src="lib/konva.min.js"></script>
+
+    <!-- CSS Linked Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/graphics.css" />
+  </head>
+  <body>
+    <div id="canvas"></div>
+
+    <div id="options">
+      <input type="checkbox" id="get-amps" checked />
+      <label>Get Amplitudes</label><br />
+
+      <input type="checkbox" id="rev-states" />
+      <label>Reverse States</label><br />
+
+      <input type="checkbox" id="disp-states" checked />
+      <label>Display States</label><br />
+
+      <input type="checkbox" id="disp-gates" checked />
+      <label>Display Gates</label><br />
+
+      <input type="checkbox" id="disp-all-nodes" checked />
+      <label>All Nodes</label><br />
+
+      <br />
+
+      <label>Circuit:</label><br />
+      <button id="circuit-btn" onclick="openCircuitPane()">Edit Circuit</button>
+      <!--
+      <input type="file" id="circuit-file-btn" name="circuit.json" />
+      -->
+
+      <br /><br />
+      <button id="gen-btn" onclick="processData()">Generate</button>
+
+      <br /><br />
+      <input type="text" id="email-box" placeholder="example@website.com" />
+      <button id="email-btn" onclick="emailImage()">Email</button>
+
+      <a id="download" onclick="downloadCanvas()">&#10515;</a>
+    </div>
+
+    <div id="circuit">
+      <textarea id="circuit-text" rows="10" cols="50"></textarea>
+      <button id="save-btn" onclick="closeCircuitPane()">Save</button>
+    </div>
+
+    <script>
+      function addEnter(button_id, text_box_id) {
+        var button = document.getElementById(button_id);
+        var text_box = document.getElementById(text_box_id);
+        text_box.addEventListener("keyup", function (event) {
+          if (event.keyCode == 13) {
+            button.click();
+          }
+        });
+      }
+
+      addEnter("email-btn", "email-box");
+      addEnter("save-btn", "circuit-text");
+    </script>
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="diagram/gates.js"></script>
+    <script type="text/javascript" src="diagram/circuit.js"></script>
+    <script type="text/javascript" src="diagram/canvas.js"></script>
+    <script type="text/javascript" src="diagram/process_data.js"></script>
+  </body>
+</html>
